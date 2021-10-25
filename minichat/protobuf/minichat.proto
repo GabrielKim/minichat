@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package minichat;
+
+message Empty {}
+
+message Req_MessageToServer {
+    string id = 1;
+    string focusChan = 2;
+    int32 command = 3;
+    string message = 4;
+}
+
+message Req_User {
+    string id = 1;
+    string focusChan = 2;
+}
+
+message Resp_MessageToClient {
+    string message = 1;
+}
+
+message Resp_AliveToClient {
+    bool alive = 1;
+}
+
+service mcServerServicer {
+    // for chat
+    rpc MessageStream(Req_User) returns (stream Resp_MessageToClient);
+    // for command
+    rpc CommandStream(Req_MessageToServer) returns (stream Resp_MessageToClient);
+    // for alive(client)
+    rpc AliveSignal(Req_User) returns (Resp_AliveToClient);
+}
