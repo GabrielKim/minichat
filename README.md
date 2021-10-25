@@ -1,6 +1,6 @@
 # Minichat
 
-CLI Based Chatting Server/Client with only very basic features.
+CLI Based Chatting Server/Client with only basic features.
 
 ## Installations
 
